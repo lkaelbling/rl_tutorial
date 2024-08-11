@@ -1,6 +1,5 @@
-import pdb
-from mdp import MDP
-from dist import DDist, uniform_dist
+from .mdp import MDP
+from .dist import DDist, uniform_dist
 import numpy as np
 import matplotlib.pyplot as plt
 

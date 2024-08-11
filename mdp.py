@@ -1,5 +1,5 @@
-from dist import uniform_dist, delta_dist, DDist, mixture_dist
-from util import argmax_with_val, argmax
+from .dist import uniform_dist, delta_dist, DDist, mixture_dist
+from .util import argmax_with_val, argmax
 import numpy as np
 
 def rand_argmax(l, f):
