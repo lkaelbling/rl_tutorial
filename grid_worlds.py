@@ -160,6 +160,7 @@ class GridWorld(MDP):
             plt.figure(facecolor="white")
             self.ax = plt.subplot()
         else:
+            self.ax = plt.gca()
             self.ax.clear()
 
         c = {'n': 0, 's': 1, 'e': 2, 'w': 3}
