@@ -409,7 +409,7 @@ def Q_vs_Dyna(grid):
     ax.set_xlabel('Training steps')
     ax.set_ylabel('Average reward per step')
     plt.show()
-    return q_curve, dyna_curve
+    #return q_curve, dyna_curve
 
 
 
