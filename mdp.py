@@ -46,7 +46,7 @@ class MDP:
         mnd = float('inf')
         self.value_iteration_init()
         for it in range(max_iters):
-            if interactive_fn: interactive_fn()
+            if interactive_fn: interactive_fn(it)
             new_q = self.value_iteration_update()
             mnd = max_norm_dist(self.q, new_q)
             if mnd  < eps:

@@ -388,14 +388,15 @@ def testSmallSSP(iters = 200, ur = 20):
     return test_grid(smallGrid, learn = True, iters = iters, ssp = True,
                         learnVisUpdateRate = ur, newAxes = True, interactive = True)
 
+def plotone(data, label):
+    x = np.array([d[0] for d in data])
+    means = np.array([d[1][0] for d in data])
+    sterrs = np.array([d[1][1] for d in data])
+    yl = means - sterrs
+    yu = means + sterrs
+    plt.fill_between(x, yl, yu, alpha=0.5, label = label)
+
 def Q_vs_Dyna(grid):
-    def plotone(data, label):
-        x = np.array([d[0] for d in data])
-        means = np.array([d[1][0] for d in data])
-        sterrs = np.array([d[1][1] for d in data])
-        yl = means - sterrs
-        yu = means + sterrs
-        plt.fill_between(x, yl, yu, alpha=0.5, label = label)
 
     q_curve = test_grid(grid, learn = 'Q', iters = 30000, interactive = True,
                         learnVisUpdateRate = 1000, learning_curve = True,
@@ -412,6 +413,18 @@ def Q_vs_Dyna(grid):
     plt.show()
     #return q_curve, dyna_curve
 
+def compare_eps(grid, eps_values):
+    fig, ax = plt.subplots()
+    for eps in eps_values:
+        data = test_grid(grid, learn = 'Q', iters = 30000, interactive = True,
+                         learning_curve = True,
+                          policy_map=False, eps_ql = eps,
+                          nom_prob = 0.95)
+        plotone(data, 'eps = ' + str(eps))
+    ax.legend()
+    ax.set_xlabel('Training steps')
+    ax.set_ylabel('Average reward per step')
+    plt.show()      
 
 
 #test_easy_grid()
